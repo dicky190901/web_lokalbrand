@@ -1,0 +1,101 @@
+<?php
+include 'tambahproduk_controller.php';
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="data" style="width: 50%; margin: auto; margin-top: 100px;" >
+        <form action="" method="POST">
+            <div class="form-group">
+                <label for="exampleInputPassword1">Nama Produk</label>
+                <input type="text" class="form-control" name="nama_produk">
+            </div>
+            <div class="form-group">
+            <label for="id_brand">Brand Produk:</label>
+<select id="id_brand" name="id_brand" required>
+    <?php
+    // Query untuk mengambil data brand dari tabel brand
+    $query = "SELECT id_brand, nama_brand FROM brand";
+    $result = mysqli_query($conn, $query);
+    
+    // Periksa apakah query berhasil dieksekusi
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Looping untuk menampilkan setiap brand dalam dropdown
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id_brand = $row['id_brand'];
+            $nama_brand = $row['nama_brand'];
+            
+            // Tampilkan setiap brand sebagai pilihan dalam dropdown
+            echo "<option value='$id_brand'>$nama_brand</option>";
+        }
+    } else {
+        echo "<option value=''>Tidak ada brand tersedia</option>";
+    }
+    ?>
+</select><br><br>
+
+            </div>
+
+            <div class="form-group">
+            <label for="id_kategori">Jenis Produk:</label>
+<select id="id_kategori" name="id_kategori" required>
+    <?php
+    // Query untuk mengambil data brand dari tabel brand
+    $query = "SELECT id_kategori, nama_kategori FROM kategori";
+    $result = mysqli_query($conn, $query);
+    
+    // Periksa apakah query berhasil dieksekusi
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Looping untuk menampilkan setiap brand dalam dropdown
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id_kategori = $row['id_kategori'];
+            $nama_kategori = $row['nama_kategori'];
+            
+            // Tampilkan setiap brand sebagai pilihan dalam dropdown
+            echo "<option value='$id_kategori'>$nama_kategori</option>";
+        }
+    } else {
+        echo "<option value=''>Tidak ada brand tersedia</option>";
+    }
+    ?>
+</select><br><br>
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Harga Produk</label>
+                <input type="text" class="form-control" name="harga_produk">
+            </div>
+            <div class="form-group">
+            <label for="stok_produk">Stok Produk:</label>
+        <select id="stok_produk" name="stok_produk" required>
+            <option value="Tersedia">Tersedia</option>
+            <option value="Kosong">Kosong</option>
+        </select><br><br>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Gambar</label>
+                <input type="file" class="form-control" name="gambar">
+            </div>
+            <button type="submit" value="submit" name="kirim" class="btn btn-primary">Kirim</button>
+            <a href="produk.php"><button type="button" class="btn btn-primary">Kembali</button></a>
+        </form>
+    </div>
+
+    <script src="js/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
